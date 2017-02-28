@@ -41,9 +41,10 @@ def main():
     time.sleep(3)
     try:
         while True:
-            armServo.turnToAndSleep(Motor.OPEN, 3)
-            armServo.turnToAndSleep(Motor.CENTER, 3)
-            armServo.turnToAndSleep(Motor.CLOSE, 3)
+            p = raw_input("pos")
+            #armServo.turnToAndSleep(Motor.OPEN, 3)
+            #armServo.turnToAndSleep(Motor.CENTER, 3)
+            armServo.turnToAndSleep(pos, 1)
     except KeyboardInterrupt:
         armServo.p.stop()
         GPIO.cleanup()
