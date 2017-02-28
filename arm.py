@@ -40,12 +40,12 @@ def main():
     armServo.setDebug(True)
     armServo.start(Motor.CENTER)
     time.sleep(1)
-    armServo.setDutyCycle(0)
+    armServo.p.setDutyCycle(0)
 
     servo2 = Motor(40)
     servo2.start(Motor.CENTER)
     time.sleep(1)
-    servo2.setDutyCycle(0)
+    servo2.p.setDutyCycle(0)
 
     armServo.p.stop()
     servo2.stop()
