@@ -22,7 +22,7 @@ class Motor():
         self.p.start(duty)
 
     def turnToAndSleep(self, duty, sleep):
-        if (debug):
+        if (self.debug):
             print "Going to {}. Sleeping for {}".format(duty, sleep)
         self.p.ChangeDutyCycle(duty)
         time.sleep(sleep)
