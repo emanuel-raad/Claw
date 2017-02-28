@@ -1,11 +1,13 @@
 import RPi.GPIO as GPIO
 import time
 
-pin = 40
+pin = 12
 
 def initGPIO():
     GPIO.setmode(GPIO.BOARD)
-    GPIO.setup(pin, GPIO.OUT)
+    GPIO.setup(12, GPIO.OUT)
+    GPIO.setup(40, GPIO.OUT)
+
 
 class Motor():
     CENTER = 7.5
@@ -34,10 +36,22 @@ class Motor():
 def main():
     initGPIO()
     print "Hello World!"
-    armServo = Motor(pin)
+    armServo = Motor(12)
     armServo.setDebug(True)
     armServo.start(Motor.CENTER)
-    time.sleep(3)
+    time.sleep(1)
+    armServo.setDutyCycle(0)
+
+    servo2 = Motor(40)
+    servo2.start(Motor.CENTER)
+    time.sleep(1)
+    servo2.setDutyCycle(0)
+
+    armServo.p.stop()
+    servo2.stop()
+    GPIO.cleanup()
+
+    """
     try:
         while True:
             p = float(raw_input("pos "))
@@ -48,5 +62,6 @@ def main():
     except KeyboardInterrupt:
         armServo.p.stop()
         GPIO.cleanup()
+    """
 if __name__=="__main__":
     main()
