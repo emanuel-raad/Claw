@@ -38,9 +38,11 @@ def main():
     armServo = Motor(pin)
     armServo.setDebug(True)
     armServo.start(Motor.CENTER)
-
+    time.sleep(3)
     try:
         while True:
+            armServo.turnToAndSleep(Motor.OPEN, 3)
+            armServo.turnToAndSleep(Motor.CENTER, 3)
             armServo.turnToAndSleep(Motor.CLOSE, 3)
     except KeyboardInterrupt:
         armServo.p.stop()
