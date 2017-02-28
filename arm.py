@@ -7,10 +7,6 @@ def initGPIO():
     GPIO.setmode(GPIO.BOARD)
     GPIO.setup(pin, GPIO.OUT)
 
-def cleanupGPIO():
-    armServo.p.stop()
-    GPIO.cleanup()
-
 class Motor():
     CENTER = 7.5
     OPEN = 12.5
@@ -45,10 +41,9 @@ def main():
 
     try:
         while True:
-            armServo.turnToAndSleep(Motor.OPEN, 3)
-            armServo.turnToAndSleep(Motor.CLOSE, 3)
+            armServo.turnToAndSleep(Motor.CENTER, 3)
     except KeyboardInterrupt:
-        cleanupGPIO()
-
+        armServo.p.stop()
+        GPIO.cleanup()
 if __name__=="__main__":
     main()
