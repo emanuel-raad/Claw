@@ -7,8 +7,7 @@ GPIO.setup(40, GPIO.OUT)
 p = GPIO.PWM(40, 50)
 p.start(7.5)
 
-class Motor()
-
+class Motor():
     CENTER = 7.5
     OPEN = 12.5
     CLOSE = 2.5
