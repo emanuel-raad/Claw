@@ -33,7 +33,7 @@ class Motor():
 
 def main():
     print "Hello World!"
-    armServo = Motor(40
+    armServo = Motor(40)
     armServo.setDebug(True)
     armServo.start(Motor.CENTER)
 
