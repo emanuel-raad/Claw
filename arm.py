@@ -36,6 +36,7 @@ class Motor():
 
 
 def main():
+    initGPIO()
     print "Hello World!"
     armServo = Motor(pin)
     armServo.setDebug(True)
