@@ -38,17 +38,21 @@ def main():
     print "Hello World!"
     armServo = Motor(12)
     armServo.setDebug(True)
-    armServo.start(Motor.CENTER)
+    armServo.start(Motor.OPEN)
     time.sleep(1)
     armServo.p.ChangeDutyCycle(0)
 
+
     servo2 = Motor(40)
-    servo2.start(Motor.CENTER)
+    servo2.start(7.5)
     time.sleep(1)
     servo2.p.ChangeDutyCycle(0)
 
+    armServo.p.ChangeDutyCycle(Motor.OPEN)
+    time.sleep(1)
+
     armServo.p.stop()
-    servo2.stop()
+    servo2.p.stop()
     GPIO.cleanup()
 
     """
