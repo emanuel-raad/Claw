@@ -41,7 +41,7 @@ def main():
     time.sleep(3)
     try:
         while True:
-            p = raw_input("pos")
+            p = float(raw_input("pos"))
             #armServo.turnToAndSleep(Motor.OPEN, 3)
             #armServo.turnToAndSleep(Motor.CENTER, 3)
             armServo.turnToAndSleep(p, 1)
