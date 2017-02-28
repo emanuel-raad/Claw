@@ -1,9 +1,6 @@
 import RPi.GPIO as GPIO
 import time
 
-
-def initGPIO():
-
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(40, GPIO.OUT)
 
@@ -24,7 +21,8 @@ class Motor():
         self.p.start(duty)
 
     def turnToAndSleep(self, duty, sleep):
-        self.p.ChanceDutyCycle(duty, sleep)
+        self.p.ChangeDutyCycle(duty)
+        time.sleep(sleep)
 
 
 def main():
