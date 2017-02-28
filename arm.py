@@ -44,7 +44,7 @@ def main():
             p = raw_input("pos")
             #armServo.turnToAndSleep(Motor.OPEN, 3)
             #armServo.turnToAndSleep(Motor.CENTER, 3)
-            armServo.turnToAndSleep(pos, 1)
+            armServo.turnToAndSleep(p, 1)
     except KeyboardInterrupt:
         armServo.p.stop()
         GPIO.cleanup()
