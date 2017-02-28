@@ -32,8 +32,10 @@ def main():
 
     try:
         while True:
-            armServo.turnToAndSleep(Motor.OPEN, 2)
-            armServo.turnToAndSleep(Motor.CLOSE, 2)
+            print "OPEN"
+            armServo.turnToAndSleep(Motor.OPEN, 3)
+            print "CLOSE"
+            armServo.turnToAndSleep(Motor.CLOSE, 3)
     except KeyboardInterrupt:
         p.stop()
         GPIO.cleanup()
