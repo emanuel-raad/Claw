@@ -24,7 +24,6 @@ class Motor():
     def turnToAndSleep(self, duty, sleep):
         if (self.debug):
             print "Going to {}. Sleeping for {}".format(duty, sleep)
-        print "here"
         self.p.ChangeDutyCycle(duty)
         time.sleep(sleep)
 
@@ -41,10 +40,11 @@ def main():
     time.sleep(3)
     try:
         while True:
-            p = float(raw_input("pos"))
+            p = float(raw_input("pos "))
+            t = float(raw_input("sleep "))
             #armServo.turnToAndSleep(Motor.OPEN, 3)
             #armServo.turnToAndSleep(Motor.CENTER, 3)
-            armServo.turnToAndSleep(p, 1)
+            armServo.turnToAndSleep(p, t)
     except KeyboardInterrupt:
         armServo.p.stop()
         GPIO.cleanup()
