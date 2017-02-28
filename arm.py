@@ -16,18 +16,25 @@ class Motor():
         self.port = port
         self.frequency = 50
         self.p = GPIO.PWM(self.port, self.frequency)
+        self.debug = False
 
     def start(self, duty):
         self.p.start(duty)
 
     def turnToAndSleep(self, duty, sleep):
+        if (debug):
+            print "Going to {}. Sleeping for {}".format(duty, sleep)
         self.p.ChangeDutyCycle(duty)
         time.sleep(sleep)
+
+    def setDebug(self, debug):
+        self.debug = debug
 
 
 def main():
     print "Hello World!"
-    armServo = Motor(40)
+    armServo = Motor(40
+    armServo.setDebug(True)
     armServo.start(Motor.CENTER)
 
     try:
@@ -35,7 +42,7 @@ def main():
             print "OPEN"
             armServo.turnToAndSleep(Motor.OPEN, 3)
             print "CLOSE"
-            armServo.turnToAndSleep(Motor.CLOSE, 3)
+            armServo.turnToAndSleep(Motor.CENTER, 3)
     except KeyboardInterrupt:
         p.stop()
         GPIO.cleanup()
