@@ -39,8 +39,9 @@ def main():
     armServo = Motor(40)
     armServo.setDebug(True)
     armServo.start(Motor.OPEN)
-    armServo.turnToAndSleep(7.5, 2)
+    armServo.turnToAndSleep(7.5, 5)
     armServo.p.ChangeDutyCycle(0)
+    time.sleep(2)
 
     servo2 = Motor(12)
     servo2.start(7.5)
@@ -48,7 +49,7 @@ def main():
     servo2.p.ChangeDutyCycle(10)
 
     armServo.p.ChangeDutyCycle(12.5)
-    time.sleep(1)
+    time.sleep(5)
 
     armServo.p.stop()
     servo2.p.stop()
