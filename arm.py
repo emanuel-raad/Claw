@@ -1,11 +1,15 @@
 import RPi.GPIO as GPIO
 import time
 
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(40, GPIO.OUT)
+pin = 40
 
-p = GPIO.PWM(40, 50)
-p.start(7.5)
+def initGPIO():
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(pin, GPIO.OUT)
+
+def cleanupGPIO():
+    armServo.p.stop()
+    GPIO.cleanup()
 
 class Motor():
     CENTER = 7.5
@@ -33,19 +37,16 @@ class Motor():
 
 def main():
     print "Hello World!"
-    armServo = Motor(40)
+    armServo = Motor(pin)
     armServo.setDebug(True)
     armServo.start(Motor.CENTER)
 
     try:
         while True:
-            print "OPEN"
             armServo.turnToAndSleep(Motor.OPEN, 3)
-            print "CLOSE"
             armServo.turnToAndSleep(Motor.CENTER, 3)
     except KeyboardInterrupt:
-        p.stop()
-        GPIO.cleanup()
+        cleanupGPIO()
 
 if __name__=="__main__":
     main()
