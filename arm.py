@@ -38,8 +38,8 @@ def main():
 
     armServo = Motor(PIN_ARM, "ARM")
     armServo.setDebug(True)
-    armServo.start(OPEN)
-    armServo.turnToAndSleep(7.5, 5)
+    armServo.start(12.5)
+    armServo.turnToAndSleep(12.5, 5)
     armServo.turnToAndSleep(0, 3)
 
     clawServo = Motor(PIN_CLAW, "CLAW")
