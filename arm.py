@@ -30,8 +30,8 @@ class Motor():
 
 def main():
     GPIO.setmode(GPIO.BOARD)
-    GPIO.setup(12, GPIO.OUT)
-    GPIO.setup(40, GPIO.OUT)
+    GPIO.setup(PIN_CLAW, GPIO.OUT)
+    GPIO.setup(PIN_ARM, GPIO.OUT)
 
     print "Hello World!"
 
