@@ -2,12 +2,10 @@ import RPi.GPIO as GPIO
 import time
 
 pin = 12
-
+CENTER = 7.5
+OPEN = 12.5
+CLOSE = 2.5
 class Motor():
-    CENTER = 7.5
-    OPEN = 12.5
-    CLOSE = 2.5
-
     def __init__(self, port):
         self.port = port
         self.frequency = 50
@@ -36,16 +34,15 @@ def main():
 
     armServo = Motor(40)
     armServo.setDebug(True)
-    armServo.start(Motor.OPEN)
+    armServo.start(OPEN)
     armServo.turnToAndSleep(7.5, 5)
-    armServo.p.ChangeDutyCycle(0)
-    time.sleep(3)
+    armServo.turnToAndSleep(0, 3)
 
     clawServo = Motor(12)
     clawServo.setDebug(True)
-    clawServo.start(MOTOR.CLOSE)
+    clawServo.start(CLOSE)
     time.sleep(1)
-    clawServo.turnToAndSleep(MOTOR.OPEN, 0)
+    clawServo.turnToAndSleep(OPEN, 0)
 
     time.sleep(5)
     armServo.turnToAndSleep(12.5, 5)
