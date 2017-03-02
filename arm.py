@@ -3,12 +3,6 @@ import time
 
 pin = 12
 
-def initGPIO():
-    GPIO.setmode(GPIO.BOARD)
-    GPIO.setup(12, GPIO.OUT)
-    GPIO.setup(40, GPIO.OUT)
-
-
 class Motor():
     CENTER = 7.5
     OPEN = 12.5
@@ -34,25 +28,30 @@ class Motor():
 
 
 def main():
-    initGPIO()
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(12, GPIO.OUT)
+    GPIO.setup(40, GPIO.OUT)
+
     print "Hello World!"
+
     armServo = Motor(40)
     armServo.setDebug(True)
     armServo.start(Motor.OPEN)
     armServo.turnToAndSleep(7.5, 5)
     armServo.p.ChangeDutyCycle(0)
-    time.sleep(2)
+    time.sleep(3)
 
-    servo2 = Motor(12)
-    servo2.start(7.5)
+    clawServo = Motor(12)
+    clawServo.setDebug(True)
+    clawServo.start(MOTOR.CLOSE)
     time.sleep(1)
-    servo2.p.ChangeDutyCycle(10)
+    clawServo.turnToAndSleep(MOTOR.OPEN, 0)
 
-    armServo.p.ChangeDutyCycle(12.5)
     time.sleep(5)
+    armServo.turnToAndSleep(12.5, 5)
 
     armServo.p.stop()
-    servo2.p.stop()
+    clawServo.p.stop()
     GPIO.cleanup()
 
     """
