@@ -1,6 +1,6 @@
 from threading import Thread
 import time
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 
 class Motor(Thread):
     CENTER = 7.5
@@ -12,16 +12,16 @@ class Motor(Thread):
         self.port = port
         self.frequency = 50
         self.name = name
-        # self.p = GPIO.PWM(self.port, self.frequency)
-        # self.p.start(startPosition)
+        self.p = GPIO.PWM(self.port, self.frequency)
+        self.p.start(startPosition)
         self.position = startPosition
         self.running = True
         self.debug = True
 
     def run(self):
         while self.running:
-            # self.p.ChangeDutyCycle(self.position)
-            print("Position: {}").format(self.position)
+            self.p.ChangeDutyCycle(self.position)
+            # print("Position: {}").format(self.position)
             time.sleep(1)
 
     def setRunning(self, isRunning):
@@ -46,7 +46,7 @@ class Motor(Thread):
 
 
 def main():
-    PIN_ARM = 38
+    PIN_ARM = 40
     PIN_CLAW = 12
 
     armMotor = Motor(PIN_ARM, 'arm', Motor.OPEN)
