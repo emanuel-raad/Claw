@@ -39,7 +39,7 @@ class Motor(Thread):
     def stop(self):
         self.running = False
         self.position = 0
-        # self.p.stop()
+        self.p.stop()
 
     def setDebug(self, debug):
         self.debug = debug
