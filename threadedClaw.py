@@ -21,7 +21,7 @@ class Motor(Thread):
     def run(self):
         while self.running:
             self.p.ChangeDutyCycle(self.position)
-            # print("Position: {}").format(self.position)
+            print("Position: {}").format(self.position)
             time.sleep(1)
 
     def setRunning(self, isRunning):
