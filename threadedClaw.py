@@ -49,6 +49,9 @@ def main():
     PIN_ARM = 40
     PIN_CLAW = 12
 
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(PIN_ARM, GPIO.OUT)
+
     armMotor = Motor(PIN_ARM, 'arm', Motor.OPEN)
     armMotor.start()
     time.sleep(2)
