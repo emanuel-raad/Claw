@@ -47,16 +47,21 @@ class Motor(Thread):
 
 
 def main():
-    PIN_ARM = 40
-    PIN_CLAW = 12
+    PIN_ARM = 12
+    PIN_CLAW = 40
 
     GPIO.setmode(GPIO.BOARD)
     GPIO.setup(PIN_ARM, GPIO.OUT)
 
-    armMotor = Motor(PIN_ARM, 'arm', Motor.OPEN)
+    armMotor = Motor(PIN_ARM, 'arm', Motor.CENTER)
+    claw = Motor(PIN_CLAW, 'arm', 9.5)
     armMotor.start()
+    claw.start()
     time.sleep(2)
-    armMotor.setPosition(Motor.CLOSE)
+
+    claw.setPosition(8.5)
+    time.sleep(1)
+    armMotor.setPosition(Motor.OPEN)
     time.sleep(2)
 
 if __name__ == "__main__":

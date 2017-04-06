@@ -1,0 +1,19 @@
+import RPi.GPIO as GPIO
+from threadedClaw import Motor
+GPIO.setmode(GPIO.BOARD)
+
+PIN_ARM = 12
+PIN_CLAW = 40
+
+GPIO.setup(PIN_ARM, GPIO.OUT)
+arm = Motor(PIN_ARM, 'arm', 12.5)
+arm.start()
+
+
+GPIO.setup(PIN_CLAW, GPIO.OUT)
+claw = Motor(PIN_CLAW, 'arm', 12.5)
+claw.start()
+
+
+import RPi.GPIO as GPIO
+GPIO.cleanup()
