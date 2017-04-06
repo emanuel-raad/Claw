@@ -63,7 +63,11 @@ def main():
     claw.setPosition(8.5)
     time.sleep(1)
     armMotor.setPosition(Motor.OPEN)
-    time.sleep(2)
+    time.sleep(4)
+
+    armMotor.stop()
+    claw.stop()
+    GPIO.cleanup()
 
 if __name__ == "__main__":
     main()
