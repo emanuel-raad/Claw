@@ -60,7 +60,7 @@ def main():
     claw.start()
     time.sleep(5)
     armMotor.setPosition(Motor.CENTER)
-    time.sleep(2)
+    time.sleep(4)
 
     claw.setPosition(8.5)
     time.sleep(1)
