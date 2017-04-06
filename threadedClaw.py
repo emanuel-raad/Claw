@@ -54,10 +54,12 @@ def main():
     GPIO.setup(PIN_ARM, GPIO.OUT)
     GPIO.setup(PIN_CLAW, GPIO.OUT)
 
-    armMotor = Motor(PIN_ARM, 'arm', Motor.CENTER)
+    armMotor = Motor(PIN_ARM, 'arm', Motor.OPEN)
     claw = Motor(PIN_CLAW, 'arm', 9.5)
     armMotor.start()
     claw.start()
+    time.sleep(5)
+    armMotor.setPosition(Motor.CENTER)
     time.sleep(2)
 
     claw.setPosition(8.5)
