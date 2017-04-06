@@ -52,6 +52,7 @@ def main():
 
     GPIO.setmode(GPIO.BOARD)
     GPIO.setup(PIN_ARM, GPIO.OUT)
+    GPIO.setup(PIN_CLAW, GPIO.OUT)
 
     armMotor = Motor(PIN_ARM, 'arm', Motor.CENTER)
     claw = Motor(PIN_CLAW, 'arm', 9.5)
