@@ -30,13 +30,12 @@ class Motor(Thread):
     def run(self):
         while self.running:
             if self.mode == 1:
-                # print 'ok'
                 self.p.ChangeDutyCycle(self.position)
-                # print("Position: {}").format(self.position)
+                print("Position: {}").format(self.position)
                 time.sleep(1)
             elif self.mode == 2:
                 position = self.speedIncrements[self.counter]
-                # self.p.ChangeDutyCycle(position)
+                self.p.ChangeDutyCycle(position)
                 print("Position: {}").format(position)
                 time.sleep(0.2)
                 if self.counter < len(self.speedIncrements):
