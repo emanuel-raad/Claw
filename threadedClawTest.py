@@ -1,7 +1,7 @@
 from threading import Thread
 import time
 import math
-import RPi.GPIO as GPIO
+# import RPi.GPIO as GPIO
 
 class Motor(Thread):
     CENTER = 7.5
@@ -13,8 +13,8 @@ class Motor(Thread):
         self.port = port
         self.frequency = 50
         self.name = name
-        self.p = GPIO.PWM(self.port, self.frequency)
-        self.p.start(startPosition)
+        # self.p = GPIO.PWM(self.port, self.frequency)
+        # self.p.start(startPosition)
         self.position = startPosition
         self.running = True
         self.debug = True
@@ -30,17 +30,21 @@ class Motor(Thread):
     def run(self):
         while self.running:
             if self.mode == 1:
-                # print 'ok'
-                self.p.ChangeDutyCycle(self.position)
-                # print("Position: {}").format(self.position)
+                # self.p.ChangeDutyCycle(self.position)
+                print("Position: {}").format(self.position)
                 time.sleep(1)
             elif self.mode == 2:
                 position = self.speedIncrements[self.counter]
                 # self.p.ChangeDutyCycle(position)
-                print("Position: {}").format(position)
-                time.sleep(0.2)
-                if self.counter < len(self.speedIncrements):
+                print("Position: {}\tCounter:{}").format(position, self.counter)
+                time.sleep(0.3)
+                if self.counter < len(self.speedIncrements) - 1:
                     self.counter += 1
+                else:
+                    self.setPosition(position)
+                    self.counter = 0
+                    self.speedIncrements = []
+                    self.mode = 1
 
     def setRunning(self, isRunning):
         self.running = isRunning
@@ -49,26 +53,31 @@ class Motor(Thread):
         self.mode = 1
         self.position = position
 
-    def setPositionSlow(self, position):
+    def setPositionSlow(self, position, h):
         self.mode = 2
-        increment = (self.position - position)/0.2
-        n = int(math.ceil(increment))
+        if (position < self.position):
+            step = -1 * h
+        else:
+            step = h
+
+        increment = (self.position - position)/step
+        n = int(math.ceil(abs(increment)))
         for i in range(0, n):
-            if i == n:
+            if i == n - 1:
                 self.speedIncrements.append(position)
             else:
-                self.speedIncrements.append(self.position + n*i)
+                self.speedIncrements.append(self.position + step*i)
 
     def turnToAndSleep(self, duty, sleep):
         if (self.debug):
             print "{}: Going to {}. Sleeping for {}".format(self.name, duty, sleep)
-        self.p.ChangeDutyCycle(duty)
+        # self.p.ChangeDutyCycle(duty)
         time.sleep(sleep)
 
     def stop(self):
         self.running = False
         self.position = 0
-        self.p.stop()
+        # self.p.stop()
 
     def setDebug(self, debug):
         self.debug = debug
@@ -76,28 +85,12 @@ class Motor(Thread):
 
 def main():
     PIN_ARM = 12
-    PIN_CLAW = 40
-
-    GPIO.setmode(GPIO.BOARD)
-    GPIO.setup(PIN_ARM, GPIO.OUT)
-    GPIO.setup(PIN_CLAW, GPIO.OUT)
 
     armMotor = Motor(PIN_ARM, 'arm', Motor.OPEN)
-    claw = Motor(PIN_CLAW, 'arm', 9.5)
     armMotor.start()
-    claw.start()
+    armMotor.setPositionSlow(2.5, 1)
     time.sleep(5)
-    armMotor.setPosition(Motor.CENTER)
-    time.sleep(4)
-
-    claw.setPosition(8.5)
-    time.sleep(1)
-    armMotor.setPosition(Motor.OPEN)
-    time.sleep(4)
-
-    armMotor.stop()
-    claw.stop()
-    GPIO.cleanup()
+    armMotor.setPositionSlow(12.5, 1)
 
 if __name__ == "__main__":
     main()
