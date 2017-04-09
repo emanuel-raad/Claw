@@ -97,9 +97,9 @@ def main():
 
     armMotor.start()
 
-    armMotor.setPositionSlow(2.5, 1)
-    time.sleep(5)
-    armMotor.setPositionSlow(12.5, 1)
+    armMotor.setPositionSlow(2.5, 0.5)
+    time.sleep(12)
+    armMotor.setPositionSlow(12.5, 0.5)
 
     armMotor.stop()
     GPIO.cleanup()
