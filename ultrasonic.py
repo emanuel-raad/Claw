@@ -46,12 +46,15 @@ class Ultrasonic:
 
 
 def main():
-  print "hi"
   d = Ultrasonic(23, 24)
 
-  while True:
-    print d.getDistance()
-    time.sleep(1)
+  try:
+    while True:
+      print d.getDistance()
+      time.sleep(1)
+  except KeyboardInterrupt:
+    GPIO.cleanup()
+
 
 if __name__ == "__main__":
   main()
