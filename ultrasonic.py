@@ -40,6 +40,7 @@ def main():
   print "hi"
 
   # d = Ultrasonic(23, 24)
+  GPIO.setmode(GPIO.BCM)  # Set GPIO pin numbering
 
   TRIG = 23  # Associate pin 23 to TRIG
   ECHO = 24  # Associate pin 24 to ECHO
