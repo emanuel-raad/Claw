@@ -85,16 +85,15 @@ class Motor(Thread):
 def main():
     GPIO.setmode(GPIO.BOARD)
 
-    PIN_ARM = 12
+    PIN_ARM = 38
     GPIO.setup(PIN_ARM, GPIO.OUT)
     armMotor = Motor(PIN_ARM, 'arm', Motor.OPEN)
 
-    '''
     PIN_CLAW = 40
     GPIO.setup(PIN_CLAW, GPIO.OUT)
-    claw = Motor(PIN_CLAW, 'arm', 9.5)
+    claw = Motor(PIN_CLAW, 'claw', 10.5)
+    
     '''
-
     armMotor.start()
     time.sleep(2)
     armMotor.setPosition(Motor.CENTER)
@@ -105,8 +104,9 @@ def main():
 
     armMotor.stop()
     GPIO.cleanup()
-
+    
     '''
+    
     armMotor.start()
     claw.start()
     time.sleep(5)
@@ -117,11 +117,15 @@ def main():
     time.sleep(1)
     armMotor.setPosition(Motor.OPEN)
     time.sleep(4)
-
-    armMotor.stop()
-    claw.stop()
-    GPIO.cleanup()
-    '''
+    
+    try:
+		while True:
+			pass
+	except KeyboardInterrupt:
+		armMotor.stop()
+		claw.stop()
+		GPIO.cleanup()
+    
 
 if __name__ == "__main__":
     main()
