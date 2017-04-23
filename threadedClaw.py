@@ -92,7 +92,9 @@ def main():
     PIN_CLAW = 40
     GPIO.setup(PIN_CLAW, GPIO.OUT)
     claw = Motor(PIN_CLAW, 'claw', 10.5)
-    
+
+    time.sleep(60)
+
     '''
     armMotor.start()
     time.sleep(2)
