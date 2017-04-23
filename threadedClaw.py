@@ -112,15 +112,16 @@ def main():
 
     try:
         while True:
-            input = raw_input('1. Grab egg\n2. Stop')
+            input = raw_input('1. Drop arm\n2. Grab egg\n3. Stop')
             if input == 1:
                 armMotor.setPositionSlow(12.5, 0.2)
                 time.sleep(15)
+            elif input == 2:
                 claw.setPosition(8.5)
-                time.sleep(1)
+                time.sleep(2)
                 armMotor.setPosition(Motor.OPEN)
                 time.sleep(4)
-            elif input == 2:
+            elif input == 3:
                 claw.stop()
                 armMotor.stop()
                 GPIO.cleanup()
