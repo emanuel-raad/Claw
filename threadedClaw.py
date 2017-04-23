@@ -126,6 +126,7 @@ def main():
                 claw.stop()
                 armMotor.stop()
                 GPIO.cleanup()
+                break
     except KeyboardInterrupt:
         claw.stop()
         armMotor.stop()
