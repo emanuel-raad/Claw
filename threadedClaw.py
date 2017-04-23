@@ -87,7 +87,7 @@ def main():
 
     PIN_ARM = 38
     GPIO.setup(PIN_ARM, GPIO.OUT)
-    armMotor = Motor(PIN_ARM, 'arm', Motor.OPEN)
+    armMotor = Motor(PIN_ARM, 'arm', Motor.CLOSE)
 
     PIN_CLAW = 40
     GPIO.setup(PIN_CLAW, GPIO.OUT)
@@ -108,12 +108,14 @@ def main():
     GPIO.cleanup()
     
     '''
-    
+    armMotor.start()
+    ''' 
+
     armMotor.start()
     claw.start()
     time.sleep(5)
-    armMotor.setPosition(Motor.CENTER)
-    time.sleep(4)
+    armMotor.setPositionSlow(Motor.CENTER, 0.2)
+    time.sleep(20)
 
     claw.setPosition(8.5)
     time.sleep(1)
@@ -127,7 +129,7 @@ def main():
         armMotor.stop()
         claw.stop()
         GPIO.cleanup()
-    
+   ''' 
 
 if __name__ == "__main__":
     main()
