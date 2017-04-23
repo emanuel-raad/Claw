@@ -91,7 +91,7 @@ def main():
 
     PIN_CLAW = 40
     GPIO.setup(PIN_CLAW, GPIO.OUT)
-    claw = Motor(PIN_CLAW, 'claw', 10.5)
+    claw = Motor(PIN_CLAW, 'claw', 9.5)
 
 
     '''
@@ -115,7 +115,7 @@ def main():
         while True:
             input = int(raw_input('1. Drop arm\n2. Grab egg\n3. Stop'))
             if input == 1:
-                armMotor.setPositionSlow(12.5, 0.2)
+                armMotor.setPositionSlow(7.5, 0.2)
                 time.sleep(15)
             elif input == 2:
                 claw.setPosition(8.5)
