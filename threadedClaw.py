@@ -119,12 +119,12 @@ def main():
     time.sleep(4)
     
     try:
-		while True:
-			pass
-	except KeyboardInterrupt:
-		armMotor.stop()
-		claw.stop()
-		GPIO.cleanup()
+        while True:
+            pass
+    except KeyboardInterrupt:
+        armMotor.stop()
+        claw.stop()
+        GPIO.cleanup()
     
 
 if __name__ == "__main__":
