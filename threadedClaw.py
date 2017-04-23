@@ -93,7 +93,6 @@ def main():
     GPIO.setup(PIN_CLAW, GPIO.OUT)
     claw = Motor(PIN_CLAW, 'claw', 10.5)
 
-    time.sleep(60)
 
     '''
     armMotor.start()
@@ -109,6 +108,27 @@ def main():
     
     '''
     armMotor.start()
+    claw.start()
+
+    try:
+        while True:
+            input = raw_input('1. Grab egg\n2. Stop')
+            if input == 1:
+                armMotor.setPositionSlow(12.5, 0.2)
+                time.sleep(15)
+                claw.setPosition(8.5)
+                time.sleep(1)
+                armMotor.setPosition(Motor.OPEN)
+                time.sleep(4)
+            elif input == 2:
+                claw.stop()
+                armMotor.stop()
+                GPIO.cleanup()
+    except KeyboardInterrupt:
+        claw.stop()
+        armMotor.stop()
+        GPIO.cleanup()
+
     ''' 
 
     armMotor.start()
