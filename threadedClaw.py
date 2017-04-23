@@ -110,6 +110,7 @@ def main():
     armMotor.start()
     claw.start()
 
+    # test
     try:
         while True:
             input = int(raw_input('1. Drop arm\n2. Grab egg\n3. Stop'))
