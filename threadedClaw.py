@@ -112,7 +112,7 @@ def main():
 
     try:
         while True:
-            input = raw_input('1. Drop arm\n2. Grab egg\n3. Stop')
+            input = int(raw_input('1. Drop arm\n2. Grab egg\n3. Stop'))
             if input == 1:
                 armMotor.setPositionSlow(12.5, 0.2)
                 time.sleep(15)
